@@ -4,6 +4,9 @@ namespace LD54
 	{
 		Menu,
 		Wave,
-		Upgrade
+		Collect,
+		Upgrade,
+		Win,
+		Lose
 	} 
 }
