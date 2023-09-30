@@ -88,6 +88,13 @@ namespace LD54
                 _enemyList.Remove(enemy);
                 Destroy(enemy.gameObject);
             }
+
+            // If all enemies are killed
+            if (_enemyList.Count == 0)
+            {
+                var gm = FindObjectOfType<GameManager>();
+                gm.CurrentWaveFinished();
+            }
         }
         
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace LD54
@@ -16,6 +17,8 @@ namespace LD54
         private Turret _turret;
         private GameState _state;
         private int _currentWaveNumber = -1;
+        [SerializeField]
+        private float _collectionTime = 3.0f;
 
         public Action<GameState> OnGameStateChanged;
 
@@ -52,12 +55,17 @@ namespace LD54
                     _waveManager.BeginWave(_currentWaveNumber);
                     break;
                 case GameState.Collect:
+                    _turret.CanShoot = false;
+                    StartCoroutine(OnCurrentWaveEnded());
                     break;
                 case GameState.Upgrade:
+                    _turret.CanShoot = false;
                     break;
                 case GameState.Win:
+                    _turret.CanShoot = false;
                     break;
                 case GameState.Lose:
+                    _turret.CanShoot = false;
                     break;
             }
         }
@@ -65,6 +73,22 @@ namespace LD54
         public void StartGame()
         {
             CurrentGameState = GameState.Wave;
+        }
+
+        public void CurrentWaveFinished()
+        {
+            CurrentGameState = GameState.Collect;
+        }
+
+        private IEnumerator OnCurrentWaveEnded()
+        {
+            Debug.Log("Current wave ended -> collection time");
+
+            yield return new WaitForSeconds(_collectionTime);
+            CurrentGameState = GameState.Upgrade;
+            
+            Debug.Log("Current wave ended -> upgrade time");
+            
         }
     } 
 }
