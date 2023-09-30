@@ -18,15 +18,12 @@ namespace LD54
         [Tooltip("Time = wave number | Value = time between successive spawns")]
         private AnimationCurve _spawnRateCurve;
 
-        private int _waveNumber = 0;
         private bool _waveOngoing = false;
         private int _waveSpawnCount;
         private float _waveSpawnRate;
         private int _currentSpawnedCount;
         private float _spawnTime = 0.0f;
         private List<EnemyBase> _enemyList = new();
-
-        public int WaveNumber { get => _waveNumber; set => _waveNumber = value; }
 
         private void Update()
         {
@@ -42,15 +39,14 @@ namespace LD54
                 Debug.LogError("Trying to start wave with enemies still present!");
 
             _waveOngoing = true;
-            _waveNumber = waveNumber;
             _currentSpawnedCount = 0;
             _enemyList.Clear();
 
             // Query spawn rate and count at the start of the wave
-            _waveSpawnCount = (int)_spawnCountCurve.Evaluate(_waveNumber);
-            _waveSpawnRate = _spawnRateCurve.Evaluate(_waveNumber);
+            _waveSpawnCount = (int)_spawnCountCurve.Evaluate(waveNumber);
+            _waveSpawnRate = _spawnRateCurve.Evaluate(waveNumber);
 
-            Debug.Log($"Wave {_waveNumber} | Spawn Count {_waveSpawnCount} | Spawn Rate {_waveSpawnRate}");
+            Debug.Log($"Wave {waveNumber} | Spawn Count {_waveSpawnCount} | Spawn Rate {_waveSpawnRate}");
         }
 
         private void DoWave()
@@ -69,6 +65,8 @@ namespace LD54
 
             enemy.Launch(_turret.transform.position, _turret.AttractionRadius, GetEnemyTargetposition(), this);
             _enemyList.Add(enemy);
+
+            _currentSpawnedCount++;
         }
 
         private GameObject GetEnemyToSpawn()
@@ -91,6 +89,7 @@ namespace LD54
                 Destroy(enemy.gameObject);
             }
         }
+        
 
         private void OnDrawGizmos()
         {

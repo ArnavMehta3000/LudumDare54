@@ -71,6 +71,7 @@ namespace LD54
             if (collision.GetComponent<Turret>() != null)
             {
                 Debug.Log("Player hit!");
+                collision.gameObject.SetActive(false);
             }
         }
     } 

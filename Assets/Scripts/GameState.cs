@@ -1,6 +1,6 @@
 namespace LD54
 {
-	enum GameState
+	public enum GameState
 	{
 		Menu,
 		Wave,

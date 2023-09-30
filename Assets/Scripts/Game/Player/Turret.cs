@@ -22,12 +22,23 @@ namespace LD54
 
         private float _currentShootTime = 0.0f;
 
+        public LineRenderer _lineRenderer;
+
+        public bool CanShoot = false;
         public float ShootingSpeed { get => _shootingSpeed; set => _shootingSpeed = value; }
         public float BulletLaunchForce { get => _bulletLaunchForce; set => _bulletLaunchForce = value; }
-        public float AttractionRadius { get => _attractionRadius; set => _attractionRadius = value; }
+        public float AttractionRadius { get => _attractionRadius; private set => _attractionRadius = value; }
+
+        private void Start()
+        {
+            SetAttractionRadius(_attractionRadius);
+        }
 
         private void Update()
         {
+            if (!CanShoot)
+                return;
+
             Rotate();
 
             _currentShootTime += Time.deltaTime;
@@ -57,10 +68,10 @@ namespace LD54
             bullet.Launch(transform.up * _bulletLaunchForce);
         }
 
-        private void OnDrawGizmos()
+        public void SetAttractionRadius(float radius)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _attractionRadius);
+            _attractionRadius = radius;
+            gameObject.DrawCircle(_attractionRadius, 0.1f, Color.white);
         }
     } 
 }
