@@ -4,14 +4,12 @@ namespace LD54
 {
     public class GameManager : MonoBehaviour
     {
-        void Start()
+        public WaveManager waveManager;
+        public Turret turret;
+
+        private void Start()
         {
-
-        }
-
-        void Update()
-        {
-
+            waveManager.BeginWave(0);
         }
     } 
 }

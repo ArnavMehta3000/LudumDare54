@@ -1,63 +1,66 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Turret : MonoBehaviour
+namespace LD54
 {
-    [Header("Shooting")]
-    [SerializeField]
-    private GameObject _bulletPrefab;
-    [SerializeField]
-    private float _shootingSpeed = 1.0f;
-    [SerializeField]
-    private float _rotationSpeed = 100.0f;
-    [SerializeField]
-    private float _bulletLaunchForce = 1.0f;
-    [SerializeField]
-    private Transform _shootPoint;
-    [SerializeField]
-    private float _attractionRadius = 15.0f;
-
-    private float _currentShootTime = 0.0f;
-
-    public float ShootingSpeed     { get => _shootingSpeed; set => _shootingSpeed = value; }
-    public float BulletLaunchForce { get => _bulletLaunchForce; set => _bulletLaunchForce = value; }
-    public float AttractionRadius  { get => _attractionRadius; set => _attractionRadius = value; }
-
-    private void Update()
+    public class Turret : MonoBehaviour
     {
-        Rotate();
+        [Header("Shooting")]
+        [SerializeField]
+        private GameObject _bulletPrefab;
+        [SerializeField]
+        private float _shootingSpeed = 1.0f;
+        [SerializeField]
+        private float _rotationSpeed = 100.0f;
+        [SerializeField]
+        private float _bulletLaunchForce = 1.0f;
+        [SerializeField]
+        private Transform _shootPoint;
+        [SerializeField]
+        private float _attractionRadius = 15.0f;
 
-        _currentShootTime += Time.deltaTime;
-        if (_currentShootTime > _shootingSpeed)
-        {
-            _currentShootTime = 0.0f;
-            Shoot();
-        }
-    }
+        private float _currentShootTime = 0.0f;
 
-    private void Rotate()
-    {
-        if (Keyboard.current.leftArrowKey.isPressed)
+        public float ShootingSpeed { get => _shootingSpeed; set => _shootingSpeed = value; }
+        public float BulletLaunchForce { get => _bulletLaunchForce; set => _bulletLaunchForce = value; }
+        public float AttractionRadius { get => _attractionRadius; set => _attractionRadius = value; }
+
+        private void Update()
         {
-            transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
+            Rotate();
+
+            _currentShootTime += Time.deltaTime;
+            if (_currentShootTime > _shootingSpeed)
+            {
+                _currentShootTime = 0.0f;
+                Shoot();
+            }
         }
 
-        if (Keyboard.current.rightArrowKey.isPressed)
+        private void Rotate()
         {
-            transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
+            if (Keyboard.current.leftArrowKey.isPressed)
+            {
+                transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
+            }
+
+            if (Keyboard.current.rightArrowKey.isPressed)
+            {
+                transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
+            }
         }
-    }
 
-    private void Shoot()
-    {
-        Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation).GetComponent<Bullet>();
-        bullet.Launch(transform.up * _bulletLaunchForce);
-    }
+        private void Shoot()
+        {
+            Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation).GetComponent<Bullet>();
+            bullet.Launch(transform.up * _bulletLaunchForce);
+        }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, _attractionRadius);
-    }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _attractionRadius);
+        }
+    } 
 }
