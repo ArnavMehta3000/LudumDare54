@@ -6,17 +6,24 @@ namespace LD54
     public class Bullet : MonoBehaviour
     {
         private Rigidbody2D _rb;
+        private SpriteRenderer _spriteRenderer;
 
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         public void Launch(Vector3 direction)
         {
             _rb.velocity = direction;
-            Destroy(gameObject, 5.0f);
+        }
+
+        private void FixedUpdate()
+        {
+            if (!_spriteRenderer.isVisible)
+                Destroy(gameObject);
         }
     } 
 }

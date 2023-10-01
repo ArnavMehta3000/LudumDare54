@@ -22,7 +22,7 @@ namespace LD54
 
         public Action<GameState> OnGameStateChanged;
 
-        public GameState CurrentGameState { get => _state; set { OnGameStateChanged?.Invoke(value); } }
+        public GameState CurrentGameState { get => _state; set { OnGameStateChanged?.Invoke(value); _state = value; } }
         public Turret Turret              { get => _turret; set => _turret = value; }
         public UIManager UIManager        { get => _uIManager; set => _uIManager = value; }
         public WaveManager WaveManager    { get => _waveManager; set => _waveManager = value; }

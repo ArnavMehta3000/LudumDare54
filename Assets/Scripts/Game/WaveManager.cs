@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,10 @@ namespace LD54
         [SerializeField]
         [Tooltip("Time = wave number | Value = time between successive spawns")]
         private AnimationCurve _spawnRateCurve;
+
+        [Header("Orb Data")]
+        [SerializeField]
+        private GameObject _orbPrefab;
 
         private bool _waveOngoing = false;
         private int _waveSpawnCount;
@@ -86,7 +91,12 @@ namespace LD54
             if (_enemyList.Contains(enemy))
             {
                 _enemyList.Remove(enemy);
+
+                // Spawn orbs
+                Instantiate(_orbPrefab, enemy.transform.position, Quaternion.identity);
+
                 Destroy(enemy.gameObject);
+                Camera.main.DOShakePosition(0.15f, 0.5f, 10, 45, true, ShakeRandomnessMode.Harmonic);
             }
 
             // If all enemies are killed

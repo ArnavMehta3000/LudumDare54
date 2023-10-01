@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace LD54
@@ -15,13 +16,17 @@ namespace LD54
 		[SerializeField]
 		private GameObject _losePanel;
 		[SerializeField]
-		private RectTransform _collectTooltopPanel;
+		private RectTransform _collectTooltipPanel;
+		[SerializeField]
+		private RectTransform _turretUpgradePanel;
 
 		[Space(2.0f)]
 
 		[Header("Animation Timings")]
 		[SerializeField]
 		private float _collectTooltipMoveTime = 0.5f;
+		[SerializeField]
+		private float _upgradePanelMoveTime = 0.5f;
 
 
 		private void OnEnable()
@@ -48,34 +53,39 @@ namespace LD54
 			{
 				case GameState.Menu:
 					ShowMainMenuPanel();
+					HideUpgradePanel();
 					HideGamePanel();
 					break;
 
 				case GameState.Wave:
 					HideMainMenuPanel();
+					HideUpgradePanel();
 					ShowGamePanel();
 					break;
 
 				case GameState.Collect:
 					HideMainMenuPanel();
+					HideUpgradePanel();
 					ShowCollectTooltipPanel();
 					break;
 
 				case GameState.Upgrade:
 					HideMainMenuPanel();
 					HideCollectTooltipPanel();
+					ShowUpgradePanel();					
 					break;
 
 				case GameState.Win:
 					HideMainMenuPanel();
+					HideUpgradePanel();
 					break;
 
 				case GameState.Lose:
 					HideMainMenuPanel();
+					HideUpgradePanel();
 					break;
 			}
 		}
-
 
 		public void ShowMainMenuPanel()
 		{
@@ -97,14 +107,28 @@ namespace LD54
 			_gamePanel.SetActive(false);
 		}
 
+		private void ShowUpgradePanel()
+		{
+			_turretUpgradePanel.gameObject.SetActive(true);
+			_turretUpgradePanel.DOScale(Vector3.one, _upgradePanelMoveTime).SetEase(Ease.InOutQuint);
+		}
+
+		private void HideUpgradePanel()
+		{            
+			_turretUpgradePanel.gameObject.SetActive(false);
+			_turretUpgradePanel.DOScale(Vector3.zero, _upgradePanelMoveTime).SetEase(Ease.InOutQuint);
+		}
+
 		public void ShowCollectTooltipPanel()
 		{
-			_collectTooltopPanel.DOAnchorPos(new Vector2(0, 20),_collectTooltipMoveTime).SetEase(Ease.InOutQuint);
+			_collectTooltipPanel.gameObject.SetActive(true);
+			_collectTooltipPanel.DOAnchorPos(new Vector2(0, 20), _collectTooltipMoveTime).SetEase(Ease.InOutQuint);
 		}
 
 		public void HideCollectTooltipPanel()
 		{
-			_collectTooltopPanel.DOAnchorPos(new Vector2(0, -40),_collectTooltipMoveTime).SetEase(Ease.InOutQuint);
+			_collectTooltipPanel.gameObject.SetActive(false);
+			_collectTooltipPanel.DOAnchorPos(new Vector2(0, -115), _collectTooltipMoveTime).SetEase(Ease.InOutQuint);
 
 		}
 	} 

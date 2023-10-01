@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace LD54
@@ -71,7 +72,7 @@ namespace LD54
             if (collision.GetComponent<Turret>() != null)
             {
                 Debug.Log("Player hit!");
-                collision.gameObject.SetActive(false);
+                Camera.main.DOShakePosition(1.0f);
             }
         }
     } 
