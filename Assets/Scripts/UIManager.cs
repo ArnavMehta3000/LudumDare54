@@ -6,6 +6,12 @@ namespace LD54
 {
 	public class UIManager : MonoBehaviour
 	{
+		[Header("Manager")]
+		[SerializeField]
+		UpgradesUIManager _upgradesUIManager;
+
+		[Space(3.0f)]
+
 		[Header("Panels")]
 		[SerializeField]
 		private GameObject _mainMenuPanel;
