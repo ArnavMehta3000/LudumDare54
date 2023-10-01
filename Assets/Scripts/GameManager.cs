@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -66,11 +67,17 @@ namespace LD54
                     break;
                 case GameState.Lose:
                     _turret.CanShoot = false;
+                    Camera.main.DOShakePosition(1.0f);
                     break;
             }
         }
 
         public void StartGame()
+        {
+            CurrentGameState = GameState.Wave;
+        }
+
+        public void NextWave()
         {
             CurrentGameState = GameState.Wave;
         }
@@ -90,5 +97,6 @@ namespace LD54
             Debug.Log("Current wave ended -> upgrade time");
             
         }
+
     } 
 }

@@ -106,9 +106,9 @@ namespace LD54
                 case GameState.Wave:
                 case GameState.Collect:
                     // Hide helper tooltip
-                    _helperTooltipPanel.gameObject.SetActive(false);
                     _helperTooltipPanel.DOKill();
-                    _helperTooltipPanel.DOAnchorPos(new Vector2(0, 115), _tooltipMoveTime).SetEase(Ease.InOutQuint);
+                    _helperTooltipPanel.DOAnchorPos(new Vector2(0, 115), _tooltipMoveTime).SetEase(Ease.InOutQuint)
+                        .OnComplete(() => { _helperTooltipPanel.gameObject.SetActive(false); });
                     break;
             }
         }

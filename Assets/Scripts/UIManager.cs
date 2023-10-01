@@ -78,6 +78,7 @@ namespace LD54
 				case GameState.Win:
 					HideMainMenuPanel();
 					HideUpgradePanel();
+
 					break;
 
 				case GameState.Lose:
@@ -114,22 +115,46 @@ namespace LD54
 		}
 
 		private void HideUpgradePanel()
-		{            
-			_turretUpgradePanel.gameObject.SetActive(false);
-			_turretUpgradePanel.DOScale(Vector3.zero, _upgradePanelMoveTime).SetEase(Ease.InOutQuint);
+		{
+			_turretUpgradePanel.DOKill();
+			_turretUpgradePanel.DOScale(Vector3.zero, _upgradePanelMoveTime).SetEase(Ease.InOutQuint)
+				.OnComplete(() => { _turretUpgradePanel.gameObject.SetActive(false); });
 		}
 
 		public void ShowCollectTooltipPanel()
 		{
+			_collectTooltipPanel.DOKill();
 			_collectTooltipPanel.gameObject.SetActive(true);
 			_collectTooltipPanel.DOAnchorPos(new Vector2(0, 20), _collectTooltipMoveTime).SetEase(Ease.InOutQuint);
 		}
 
 		public void HideCollectTooltipPanel()
 		{
-			_collectTooltipPanel.gameObject.SetActive(false);
-			_collectTooltipPanel.DOAnchorPos(new Vector2(0, -115), _collectTooltipMoveTime).SetEase(Ease.InOutQuint);
+			_collectTooltipPanel.DOKill();
+			_collectTooltipPanel.DOAnchorPos(new Vector2(0, -115), _collectTooltipMoveTime).SetEase(Ease.InOutQuint)
+				.OnComplete(() => { _collectTooltipPanel.gameObject.SetActive(false); });
 
+		}
+
+		public void ShowWinPanel()
+		{
+			_winPanel.SetActive(true);
+		}
+
+		public void HideWinPanel()
+		{
+			_winPanel.SetActive(false);
+		}
+
+		public void ShowLosePanel()
+		{
+			_losePanel.SetActive(true);
+
+		}
+
+		public void HideLosePanel()
+		{
+			_losePanel.SetActive(false);
 		}
 	} 
 }

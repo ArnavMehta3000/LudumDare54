@@ -72,7 +72,7 @@ namespace LD54
             if (collision.GetComponent<Turret>() != null)
             {
                 Debug.Log("Player hit!");
-                Camera.main.DOShakePosition(1.0f);
+                FindObjectOfType<GameManager>().CurrentGameState = GameState.Lose;
             }
         }
     } 
