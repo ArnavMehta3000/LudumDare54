@@ -341,7 +341,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 10922266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 754517959}
+        m_TargetAssemblyTypeName: LD54.UpgradePanel, Assembly-CSharp
+        m_MethodName: CallButtonCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &10922266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +531,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e277d27f894be748972b63720bf30a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levels:
+  - {fileID: 1975735394}
+  - {fileID: 1509866240}
+  - {fileID: 239182351}
+  - {fileID: 1479635250}
+  OnBuyButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1447642806}
+        m_TargetAssemblyTypeName: LD54.Turret, Assembly-CSharp
+        m_MethodName: IncreaseBulletSpawnRate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &235827437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2238,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 707045563}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1794981145}
+        m_TargetAssemblyTypeName: LD54.UpgradePanel, Assembly-CSharp
+        m_MethodName: CallButtonCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &707045563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2384,6 +2428,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e277d27f894be748972b63720bf30a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levels:
+  - {fileID: 1386729611}
+  - {fileID: 1744581490}
+  - {fileID: 127710496}
+  - {fileID: 1900898254}
+  OnBuyButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1447642806}
+        m_TargetAssemblyTypeName: LD54.Turret, Assembly-CSharp
+        m_MethodName: IncreaseBulletSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &846449733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2530,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 846449736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 167770883}
+        m_TargetAssemblyTypeName: LD54.UpgradePanel, Assembly-CSharp
+        m_MethodName: CallButtonCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &846449736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,6 +3359,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e277d27f894be748972b63720bf30a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levels:
+  - {fileID: 1403562390}
+  - {fileID: 556971241}
+  - {fileID: 2140857493}
+  - {fileID: 2081190795}
+  OnBuyButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1447642806}
+        m_TargetAssemblyTypeName: LD54.Turret, Assembly-CSharp
+        m_MethodName: IncreaseAttractionRadius
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1386729609
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,7 +3564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 440878083907390329, guid: 002ba31c7aae0d342be61c3b181690d4, type: 3}
   _shootingSpeed: 1
-  _rotationSpeed: 100
+  _rotationSpeed: 150
   _bulletLaunchForce: 5
   _shootPoint: {fileID: 242439687}
   _attractionRadius: 15
@@ -4499,7 +4595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1550176679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1351669448}
+        m_TargetAssemblyTypeName: LD54.UpgradePanel, Assembly-CSharp
+        m_MethodName: CallButtonCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1550176679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5476,6 +5584,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e277d27f894be748972b63720bf30a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levels:
+  - {fileID: 1619084708}
+  - {fileID: 1877950865}
+  - {fileID: 1315936414}
+  - {fileID: 663836130}
+  OnBuyButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1447642806}
+        m_TargetAssemblyTypeName: LD54.Turret, Assembly-CSharp
+        m_MethodName: IncreaseMultiBullets
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1816358010
 GameObject:
   m_ObjectHideFlags: 0

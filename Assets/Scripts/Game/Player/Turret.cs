@@ -32,8 +32,6 @@ namespace LD54
         [SerializeField]
         private RectTransform _helperTooltipPanel;
 
-
-        private bool IsUpgrading       { get; set; } = false;
         public bool CanShoot           { get; set; } = false;
         public float ShootingSpeed     { get => _shootingSpeed;            set => _shootingSpeed = value; }
         public float BulletLaunchForce { get => _bulletLaunchForce;        set => _bulletLaunchForce = value; }
@@ -111,6 +109,26 @@ namespace LD54
                         .OnComplete(() => { _helperTooltipPanel.gameObject.SetActive(false); });
                     break;
             }
+        }
+
+        public void IncreaseBulletSpeed()
+        {
+
+        }
+
+        public void IncreaseBulletSpawnRate()
+        {
+
+        }
+
+        public void IncreaseAttractionRadius()
+        {
+
+        }
+
+        public void IncreaseMultiBullets()
+        {
+
         }
     } 
 }
