@@ -23,6 +23,8 @@ namespace LD54
         [SerializeField]
         private GameObject _orbPrefab;
 
+        public static int WaveNumber {get; private set;}
+
         private bool _waveOngoing = false;
         private int _waveSpawnCount;
         private float _waveSpawnRate;

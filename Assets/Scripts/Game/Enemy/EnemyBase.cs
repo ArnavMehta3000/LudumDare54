@@ -50,6 +50,13 @@ namespace LD54
 
         private void Update()
         {
+            if (_rb.velocity != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10.0f * Time.deltaTime);
+            }
+
             if (!_turretAsTarget && Vector3.Distance(transform.position, _turretPosition) < _turretAttractionRadius)
             {
                 _turretAsTarget = true;

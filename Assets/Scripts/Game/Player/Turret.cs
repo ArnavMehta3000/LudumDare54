@@ -13,15 +13,20 @@ namespace LD54
         [SerializeField]
         private GameObject _bulletPrefab;
         [SerializeField]
-        private float _shootingSpeed = 1.0f;
+        private AnimationCurve _shootingSpeedCurve;
+        private float _currentShootingSpeed = 1.0f;
         [SerializeField]
-        private float _rotationSpeed = 100.0f;
+        private AnimationCurve _rotationSpeedCurve;
+        private float _currentRotationSpeed = 100.0f;
         [SerializeField]
-        private float _bulletLaunchForce = 1.0f;
+        private AnimationCurve _bulletLaunchSpeedCurve;
+        private float _currentBulletLaunchForce = 1.0f;
+        [SerializeField]
+        private AnimationCurve _attractionRadiusCurve;
+        private float _currentAttractionRadius = 15.0f;
+
         [SerializeField]
         private Transform _shootPoint;
-        [SerializeField]
-        private float _attractionRadius = 15.0f;
         private float _currentShootTime = 0.0f;
 
         [Space(3.0f)]
@@ -32,15 +37,32 @@ namespace LD54
         [SerializeField]
         private RectTransform _helperTooltipPanel;
 
+        private int _shootSpeedIndex, _rotationSpeedIndex, _bulletLaunchSpeedIndex, _attractionRadiusIndex, _multiShootIndex;
+
         public bool CanShoot           { get; set; } = false;
-        public float ShootingSpeed     { get => _shootingSpeed;            set => _shootingSpeed = value; }
-        public float BulletLaunchForce { get => _bulletLaunchForce;        set => _bulletLaunchForce = value; }
-        public float AttractionRadius  { get => _attractionRadius; private set => _attractionRadius = value; }
+        public float ShootingSpeed     { get => _currentShootingSpeed;            set => _currentShootingSpeed = value; }
+        public float BulletLaunchForce { get => _currentBulletLaunchForce;        set => _currentBulletLaunchForce = value; }
+        public float AttractionRadius  { get => _currentAttractionRadius; private set => _currentAttractionRadius = value; }
+
+        private void Awake()
+        {
+            _gameManager = FindObjectOfType<GameManager>();
+        }
 
         private void Start()
         {
-            SetAttractionRadius(_attractionRadius);
-            _gameManager = FindObjectOfType<GameManager>();
+            EvaluateCurrent();
+            _multiShootIndex = 1;
+        }
+
+        private void EvaluateCurrent()
+        {
+            _currentShootingSpeed = _shootingSpeedCurve.Evaluate(_shootSpeedIndex);
+            _currentRotationSpeed = _rotationSpeedCurve.Evaluate(_rotationSpeedIndex);
+            _currentBulletLaunchForce = _bulletLaunchSpeedCurve.Evaluate(_bulletLaunchSpeedIndex);
+            _currentAttractionRadius = _attractionRadiusCurve.Evaluate(_attractionRadiusIndex);
+
+            SetAttractionRadius(_currentAttractionRadius);
         }
 
         private void Update()
@@ -51,7 +73,7 @@ namespace LD54
             Rotate();
 
             _currentShootTime += Time.deltaTime;
-            if (_currentShootTime > _shootingSpeed)
+            if (_currentShootTime > _currentShootingSpeed)
             {
                 _currentShootTime = 0.0f;
                 Shoot();
@@ -60,27 +82,27 @@ namespace LD54
 
         private void Rotate()
         {
-            if (Keyboard.current.leftArrowKey.isPressed)
+            if (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed)
             {
-                transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
+                transform.Rotate(0, 0, _currentRotationSpeed * Time.deltaTime);
             }
 
-            if (Keyboard.current.rightArrowKey.isPressed)
+            if (Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed)
             {
-                transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
+                transform.Rotate(0, 0, -_currentRotationSpeed * Time.deltaTime);
             }
         }
 
         private void Shoot()
         {
             Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation).GetComponent<Bullet>();
-            bullet.Launch(transform.up * _bulletLaunchForce);
+            bullet.Launch(transform.up * _currentBulletLaunchForce);
         }
 
         public void SetAttractionRadius(float radius)
         {
-            _attractionRadius = radius;
-            gameObject.DrawCircle(_attractionRadius, 0.1f, Color.white);
+            _currentAttractionRadius = radius;
+            gameObject.DrawCircle(_currentAttractionRadius, 0.1f, Color.white);
         }
 
         private void OnMouseEnter()
@@ -113,22 +135,26 @@ namespace LD54
 
         public void IncreaseBulletSpeed()
         {
-
+            _bulletLaunchSpeedIndex++;
+            EvaluateCurrent();
         }
 
         public void IncreaseBulletSpawnRate()
         {
-
+            _shootSpeedIndex++;
+            EvaluateCurrent();
         }
 
-        public void IncreaseAttractionRadius()
+        public void DecreaseAttractionRadius()
         {
-
+            _attractionRadiusIndex++;
+            EvaluateCurrent();
         }
 
         public void IncreaseMultiBullets()
         {
-
+            _multiShootIndex++;
+            EvaluateCurrent();
         }
     } 
 }

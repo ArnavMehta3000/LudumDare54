@@ -532,10 +532,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 1975735394}
-  - {fileID: 1509866240}
-  - {fileID: 239182351}
   - {fileID: 1479635250}
+  - {fileID: 239182351}
+  - {fileID: 1509866240}
+  - {fileID: 1975735394}
   OnBuyButtonPressed:
     m_PersistentCalls:
       m_Calls:
@@ -767,7 +767,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1561278120}
-  - {fileID: 650272195}
   - {fileID: 342873179}
   - {fileID: 1268867321}
   m_Father: {fileID: 0}
@@ -888,7 +887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &380125014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1946,7 +1945,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650272194}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1954,7 +1953,7 @@ RectTransform:
   - {fileID: 612852131}
   - {fileID: 1949451540}
   - {fileID: 380125014}
-  m_Father: {fileID: 325711298}
+  m_Father: {fileID: 1561278120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3360,16 +3359,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 1403562390}
-  - {fileID: 556971241}
-  - {fileID: 2140857493}
   - {fileID: 2081190795}
+  - {fileID: 2140857493}
+  - {fileID: 556971241}
+  - {fileID: 1403562390}
   OnBuyButtonPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1447642806}
         m_TargetAssemblyTypeName: LD54.Turret, Assembly-CSharp
-        m_MethodName: IncreaseAttractionRadius
+        m_MethodName: DecreaseAttractionRadius
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3563,11 +3562,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 440878083907390329, guid: 002ba31c7aae0d342be61c3b181690d4, type: 3}
-  _shootingSpeed: 1
-  _rotationSpeed: 150
-  _bulletLaunchForce: 5
+  _shootingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _rotationSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: 185
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 185
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _bulletLaunchSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _attractionRadiusCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _shootPoint: {fileID: 242439687}
-  _attractionRadius: 15
   _tooltipMoveTime: 0.25
   _helperTooltipPanel: {fileID: 1949451540}
 --- !u!212 &1447642807
@@ -4829,6 +4920,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 488151468}
+  - {fileID: 650272195}
   m_Father: {fileID: 325711298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5585,10 +5677,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 1619084708}
-  - {fileID: 1877950865}
-  - {fileID: 1315936414}
   - {fileID: 663836130}
+  - {fileID: 1315936414}
+  - {fileID: 1877950865}
+  - {fileID: 1619084708}
   OnBuyButtonPressed:
     m_PersistentCalls:
       m_Calls:

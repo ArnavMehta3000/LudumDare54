@@ -33,6 +33,11 @@ namespace LD54
 		private void SetLevel()
 		{
 			// Set UI level bars
+			_currentLevel++;
+			foreach (var level in _levels)
+			{
+				level.color = Color.yellow;
+			}
 
 		}
 	} 
