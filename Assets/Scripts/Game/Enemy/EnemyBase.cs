@@ -57,7 +57,7 @@ namespace LD54
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10.0f * Time.deltaTime);
             }
 
-            if (!_turretAsTarget && Vector3.Distance(transform.position, _turretPosition) < _turretAttractionRadius)
+            if (!_turretAsTarget && Vector3.Distance(transform.position, _turretPosition) < _turretAttractionRadius + 1.0f)
             {
                 _turretAsTarget = true;
                 SetTarget(_turretPosition);

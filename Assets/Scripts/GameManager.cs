@@ -90,6 +90,7 @@ namespace LD54
         private IEnumerator OnCurrentWaveEnded()
         {
             Debug.Log("Current wave ended -> collection time");
+            
 
             yield return new WaitForSeconds(_collectionTime);
             CurrentGameState = GameState.Upgrade;

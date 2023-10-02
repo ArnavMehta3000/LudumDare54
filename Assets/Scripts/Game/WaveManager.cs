@@ -49,6 +49,8 @@ namespace LD54
             _currentSpawnedCount = 0;
             _enemyList.Clear();
 
+            WaveNumber = waveNumber;
+
             // Query spawn rate and count at the start of the wave
             _waveSpawnCount = (int)_spawnCountCurve.Evaluate(waveNumber);
             _waveSpawnRate = _spawnRateCurve.Evaluate(waveNumber);

@@ -34,9 +34,10 @@ namespace LD54
 		{
 			// Set UI level bars
 			_currentLevel++;
-			foreach (var level in _levels)
+			_currentLevel = _currentLevel > 3 ? 3 : _currentLevel;
+			for (int i = 0; i < _currentLevel; i++)
 			{
-				level.color = Color.yellow;
+				_levels[i].color = Color.yellow;
 			}
 
 		}
