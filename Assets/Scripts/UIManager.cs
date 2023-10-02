@@ -117,7 +117,8 @@ namespace LD54
 		private void ShowUpgradePanel()
 		{
 			_turretUpgradePanel.gameObject.SetActive(true);
-			_turretUpgradePanel.DOScale(Vector3.one, _upgradePanelMoveTime).SetEase(Ease.InOutQuint);
+			_turretUpgradePanel.DOScale(Vector3.one, _upgradePanelMoveTime).SetEase(Ease.InOutQuint)
+				.OnComplete(() => { _upgradesUIManager.ShowPanels(); }) ;
 		}
 
 		private void HideUpgradePanel()
@@ -125,6 +126,7 @@ namespace LD54
 			_turretUpgradePanel.DOKill();
 			_turretUpgradePanel.DOScale(Vector3.zero, _upgradePanelMoveTime).SetEase(Ease.InOutQuint)
 				.OnComplete(() => { _turretUpgradePanel.gameObject.SetActive(false); });
+			_upgradesUIManager.HidePanels();
 		}
 
 		public void ShowCollectTooltipPanel()
